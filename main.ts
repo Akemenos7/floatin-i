@@ -379,6 +379,25 @@ f f f f f f f f f f f f f f f f
 . . . . . 7 7 7 f 7 7 7 . . . . 
 . . . . . 7 7 7 f 7 7 7 . . . . 
 `
+    //% blockIdentity=images._tile
+    export const tile26 = img`
+. . . . . . . 5 . . . . . . . . 
+. . . . . . . 5 . . . . . . . . 
+. . . . . . . 5 . . . . . . . . 
+. . . . . . . 5 . . . . . . . . 
+. . . . . . . 5 5 . . . . . . . 
+. . . . . . . . 5 . . . . . . . 
+. . . . . . . 5 5 . . . . . . . 
+. . . . . . . 5 . . . . . . . . 
+. . . . . . . 5 5 5 . . . . . . 
+. . . . . . . . . 5 . . . . . . 
+. . . . . . . . . 5 . . . . . . 
+. . . . . . . . 5 5 . . . . . . 
+. . . . . . . 5 5 . . . . . . . 
+. . . . . . . 5 . . . . . . . . 
+. . . . . . . 5 . . . . . . . . 
+. . . . . . . 5 . . . . . . . . 
+`
 }
 function StartLevel () {
     tiles.setTilemap(tiles.createTilemap(
@@ -396,7 +415,7 @@ function StartLevel () {
 . . . 2 . . 2 . . . . . . 2 . . 
 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
 `,
-            [myTiles.tile0,myTiles.tile1,myTiles.tile2,myTiles.tile4,myTiles.tile5,myTiles.tile6,myTiles.tile7,myTiles.tile8,myTiles.tile9,myTiles.tile10,myTiles.tile11,myTiles.tile12,myTiles.tile13,myTiles.tile14,myTiles.tile15,myTiles.tile16,myTiles.tile17,myTiles.tile23,myTiles.tile24,myTiles.tile25],
+            [myTiles.tile0,myTiles.tile1,myTiles.tile2,myTiles.tile4,myTiles.tile5,myTiles.tile6,myTiles.tile7,myTiles.tile8,myTiles.tile9,myTiles.tile10,myTiles.tile11,myTiles.tile12,myTiles.tile13,myTiles.tile14,myTiles.tile15,myTiles.tile16,myTiles.tile17,myTiles.tile23,myTiles.tile24,myTiles.tile25,myTiles.tile26],
             TileScale.Sixteen
         ))
 }
@@ -405,6 +424,16 @@ scene.onOverlapTile(SpriteKind.Player, myTiles.tile13, function (sprite, locatio
 })
 scene.onOverlapTile(SpriteKind.Player, myTiles.tile12, function (sprite, location) {
     game.over(false)
+})
+scene.onOverlapTile(SpriteKind.Player, myTiles.tile0, function (sprite, location) {
+	
+})
+scene.onOverlapTile(SpriteKind.Player, myTiles.tile26, function (sprite, location) {
+    tiles.setTileAt(location, myTiles.tile0)
+    for (let value of tiles.getTilesByType(myTiles.tile25)) {
+        tiles.setTileAt(location, myTiles.tile0)
+        tiles.setWallAt(value, false)
+    }
 })
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     if (Floatin_I.vy == 0) {
@@ -428,31 +457,31 @@ function NextLevel () {
 . . . . . . . . . . . . . . . . 
 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
 `,
-            [myTiles.tile0,myTiles.tile1,myTiles.tile2,myTiles.tile4,myTiles.tile5,myTiles.tile6,myTiles.tile7,myTiles.tile8,myTiles.tile9,sprites.castle.tileGrass1,sprites.castle.saplingPine,myTiles.tile10,sprites.builtin.forestTiles0,myTiles.tile11,myTiles.tile12,myTiles.tile13,myTiles.tile14,myTiles.tile15,myTiles.tile16,myTiles.tile17,myTiles.tile23,myTiles.tile24,myTiles.tile25],
+            [myTiles.tile0,myTiles.tile1,myTiles.tile2,myTiles.tile4,myTiles.tile5,myTiles.tile6,myTiles.tile7,myTiles.tile8,myTiles.tile9,sprites.castle.tileGrass1,sprites.castle.saplingPine,myTiles.tile10,sprites.builtin.forestTiles0,myTiles.tile11,myTiles.tile12,myTiles.tile13,myTiles.tile14,myTiles.tile15,myTiles.tile16,myTiles.tile17,myTiles.tile23,myTiles.tile24,myTiles.tile25,myTiles.tile26],
             TileScale.Sixteen
         ))
     } else if (levels == 2) {
         tiles.setTilemap(tiles.createTilemap(
-            hex`180010000000000000000000000000000003000000000000140000000000000000000000000000000003000000000000140000000000000000000000000000000003000000000000140c00000000000000000000000000000003000000000000100f0f0f00000000000000000000000000030000000000000000000000000000000000000000000000100f0f0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000b0b00000000000000000100000e0f0f0f000000000000000a0a0b00000000000000030000000000000000000000000000000a00000000000000030000000000000000000000000000000a0000000000000e050600000000000000000000000a0b000000000000000000030000000000000d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d`,
+            hex`180010000000000000000000000000000003000000000000140000000000000000000000000000000003000000000000140000000000000000000000000000000003000000000000140c00000000000000000000000000000003000000000000100f0f0f00000000000000000000000000030000000000000000000000000000000000000000000000030000000000000000000000000000000000000000000000100f0f0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000b0b00000000000000000300000e0f0f0f000000000000000a0a0b00000000000000030000000000150000000000000000000a00000000000000030000000000150000000000000000000a0000000000000e050600000000150000000000000a0b000000000000000000030000000000150d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d0d`,
             img`
+. . . . . . . . . . . . . 2 . . . . . . 2 . . . 
+. . . . . . . . . . . . . 2 . . . . . . 2 . . . 
+. . . . . . . . . . . . . 2 . . . . . . 2 . . . 
+. . . . . . . . . . . . . 2 . . . . . . 2 2 2 2 
+. . . . . . . . . . . . . 2 . . . . . . . . . . 
+. . . . . . . . . . . . . 2 . . . . . . . . . . 
+. . . . . . . . . . . . . 2 2 2 . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . 
 . . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . 
-. . . . . . . . . . . . . . . . . . . . . . . . 
+. . . . . . . . . . . . . . . . . 2 . . 2 2 2 2 
+. . . . . . . . . . . . . . . . . 2 . . . . . . 
+. . . . . . . . . . . . . . . . . 2 . . . . . . 
+. . . . . . . . . . . . . . . . 2 2 2 . . . . . 
+. . . . . . . . . . . . . . . . . 2 . . . . . . 
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
+2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 2 
 `,
-            [myTiles.tile0,myTiles.tile1,myTiles.tile2,myTiles.tile4,myTiles.tile5,myTiles.tile6,myTiles.tile7,myTiles.tile8,myTiles.tile9,myTiles.tile10,myTiles.tile11,myTiles.tile12,myTiles.tile13,sprites.castle.tileGrass1,myTiles.tile14,myTiles.tile15,myTiles.tile16,myTiles.tile17,myTiles.tile23,myTiles.tile24,myTiles.tile25],
+            [myTiles.tile0,myTiles.tile1,myTiles.tile2,myTiles.tile4,myTiles.tile5,myTiles.tile6,myTiles.tile7,myTiles.tile8,myTiles.tile9,myTiles.tile10,myTiles.tile11,myTiles.tile12,myTiles.tile13,sprites.castle.tileGrass1,myTiles.tile14,myTiles.tile15,myTiles.tile16,myTiles.tile17,myTiles.tile23,myTiles.tile24,myTiles.tile25,myTiles.tile26],
             TileScale.Sixteen
         ))
     }
